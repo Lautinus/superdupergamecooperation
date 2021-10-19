@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemie_Stats : MonoBehaviour
+public class Player_Stats : MonoBehaviour
 {
     public Animator animator;
 
@@ -20,7 +20,7 @@ public class Enemie_Stats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealt -= damage;
+        currentHealt -= (damage / resistance );
 
         //Player hurt animation
         animator.SetTrigger("Hurt");
@@ -40,9 +40,9 @@ public class Enemie_Stats : MonoBehaviour
         //Disable the enemy
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-     
-        
-        
+
+
+
     }
 
 }

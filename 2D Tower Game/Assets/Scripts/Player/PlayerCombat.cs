@@ -10,9 +10,9 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
 
     public float attackRange = 0.5f;
-    private int attackDamage = 40;
     public float attackRate = 2f; // Attack 2 Times per Second
-    private float nextAttackTime = 0F;
+    private float nextAttackTime = 0f;
+    private int attackDamage = 0;
     // Update is called once per frame
     void Update()
     {
@@ -36,8 +36,10 @@ public class PlayerCombat : MonoBehaviour
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
+        attackDamage = this.GetComponent<Player_Stats>().attackdamage;
+
         //Damage them
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemie_Stats>().TakeDamage(attackDamage);
         }
